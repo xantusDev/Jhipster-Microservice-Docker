@@ -1,0 +1,74 @@
+version: '2'
+services:
+  books:
+    image: books
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+      - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://books-postgresql:5432/books'
+      - JHIPSTER_SLEEP=30
+      - JHIPSTER_REGISTRY_PASSWORD=admin
+  books-postgresql:
+    image: 'postgres:12.3'
+    environment:
+      - POSTGRES_USER=books
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  library:
+    image: library
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - 'SPRING_PROFILES_ACTIVE=prod,swagger'
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - 'EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka'
+      - 'SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://library-postgresql:5432/library'
+      - JHIPSTER_SLEEP=30
+      - 'SPRING_DATA_JEST_URI=http://library-elasticsearch:9200'
+      - 'SPRING_ELASTICSEARCH_REST_URIS=http://library-elasticsearch:9200'
+      - JHIPSTER_REGISTRY_PASSWORD=admin
+    ports:
+      - '8080:8881'
+  library-postgresql:
+    image: 'postgres:12.3'
+    environment:
+      - POSTGRES_USER=library
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
+  library-elasticsearch:
+    image: 'docker.elastic.co/elasticsearch/elasticsearch:6.8.8'
+    environment:
+      - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+      - discovery.type=single-node
+
+  jhipster-registry:
+    extends:
+      file: jhipster-registry.yml
+      service: jhipster-registry
+
+  jhipster-elasticsearch:
+    extends:
+      file: jhipster-console.yml
+      service: jhipster-elasticsearch
+  jhipster-logstash:
+    extends:
+      file: jhipster-console.yml
+      service: jhipster-logstash
+    depends_on:
+      - jhipster-elasticsearch
+  jhipster-console:
+    extends:
+      file: jhipster-console.yml
+      service: jhipster-console
+    depends_on:
+      - jhipster-elasticsearch
+  jhipster-import-dashboards:
+    extends:
+      file: jhipster-console.yml
+      service: jhipster-import-dashboards
+    depends_on:
+      - jhipster-elasticsearch

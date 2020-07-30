@@ -1,38 +1,11 @@
 {
   "generator-jhipster": {
-    "promptValues": {
-      "packageName": "com.micro.books"
-    },
-    "jhipsterVersion": "6.10.1",
-    "applicationType": "microservice",
-    "baseName": "books",
-    "packageName": "com.micro.books",
-    "packageFolder": "com/micro/books",
-    "serverPort": "8882",
-    "authenticationType": "jwt",
-    "cacheProvider": "ehcache",
-    "enableHibernateCache": false,
-    "websocket": false,
-    "databaseType": "sql",
-    "devDatabaseType": "h2Memory",
-    "prodDatabaseType": "postgresql",
-    "searchEngine": false,
-    "messageBroker": false,
+    "appsFolders": ["books", "library"],
+    "directoryPath": "./",
+    "gatewayType": "zuul",
+    "monitoring": "elk",
+    "consoleOptions": [],
     "serviceDiscoveryType": "eureka",
-    "buildTool": "maven",
-    "enableSwaggerCodegen": true,
-    "jwtSecretKey": "ODExZWZlOWVjNjU0M2IyNzhhODMzYmQzNGFhNjA0ZWRhYjc2MDlhYzljYjZhMDZiY2Y1NzI4OGJhZjZmM2U1NjA5YjM4YjViZTE5ZjI5YmNjNDk1NjJiOTdkZTlmNzI2NGM5MzcxN2VmMjU5MTEyM2VmZDEzZWU4ZTg1NTQ4MmE=",
-    "embeddableLaunchScript": false,
-    "creationTimestamp": 1596042951559,
-    "testFrameworks": ["gatling"],
-    "jhiPrefix": "jhi",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": [],
-    "enableTranslation": false,
-    "clientPackageManager": "npm",
-    "blueprints": [],
-    "skipClient": true,
-    "skipUserManagement": true
+    "jwtSecretKey": "YTI2ZjQ1ZmUzOWRiNjZmNjIwM2E5M2FlZGU2OGMxMzk0YjdiYjIxOGVhNTY1YWY1MmUzOTg4YTk0MGUxNThlYTU1NDdhZmNkNjBiMWJmZDA0ZWM1YWY4ZTIxY2U1NTJhNmE5Yw=="
   }
 }
