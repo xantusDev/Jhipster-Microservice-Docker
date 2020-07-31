@@ -35,5 +35,10 @@
     "skipClient": true,
     "skipUserManagement": true,
     "lastLiquibaseTimestamp": 1596047765000
+  },
+  "generator-jhipster-entity-audit": {
+    "auditFramework": "custom",
+    "auditPage": true,
+    "lastLiquibaseTimestamp": 1596112162000
   }
 }

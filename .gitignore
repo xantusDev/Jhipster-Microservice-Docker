@@ -1,0 +1,5 @@
+.idea
+/node_modules
+/jhipster-registry/node_modules
+/library/node_modules
+/books/node_modules

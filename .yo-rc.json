@@ -4,7 +4,7 @@
     "directoryPath": "./",
     "gatewayType": "zuul",
     "monitoring": "elk",
-    "consoleOptions": [],
+    "consoleOptions": ["zipkin"],
     "serviceDiscoveryType": "eureka",
     "jwtSecretKey": "YTI2ZjQ1ZmUzOWRiNjZmNjIwM2E5M2FlZGU2OGMxMzk0YjdiYjIxOGVhNTY1YWY1MmUzOTg4YTk0MGUxNThlYTU1NDdhZmNkNjBiMWJmZDA0ZWM1YWY4ZTIxY2U1NTJhNmE5Yw=="
   }

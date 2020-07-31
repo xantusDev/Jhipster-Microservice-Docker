@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * A DTO for the {@link com.micro.books.domain.Book} entity.
  */
-public class BookDTO implements Serializable {
+public class BookDTO extends AbstractAuditingDTO implements Serializable {
     
     private Long id;
 

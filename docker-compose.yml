@@ -72,3 +72,9 @@ services:
       service: jhipster-import-dashboards
     depends_on:
       - jhipster-elasticsearch
+  jhipster-zipkin:
+    extends:
+      file: jhipster-console.yml
+      service: jhipster-zipkin
+    depends_on:
+      - jhipster-elasticsearch
