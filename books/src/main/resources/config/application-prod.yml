@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     io.github.jhipster: INFO
-    com.micro.books: INFO
+    com.micro.books: DEBUG
 
 eureka:
   instance:
@@ -64,7 +64,7 @@ spring:
       probability: 1 # report 100% of traces
   zipkin: # Use the "zipkin" Maven profile to have the Spring Cloud Zipkin dependencies
     base-url: http://localhost:9411
-    enabled: false
+    enabled: true
     locator:
       discovery:
         enabled: true

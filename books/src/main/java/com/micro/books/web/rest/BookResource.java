@@ -61,7 +61,7 @@ public class BookResource {
      */
     @PostMapping("/books")
     public ResponseEntity<BookDTO> createBook(@Valid @RequestBody BookDTO bookDTO) throws URISyntaxException {
-        log.debug("REST request to save Book : {}", bookDTO);
+        log.info("REST request to save Book : {}", bookDTO);
         if (bookDTO.getId() != null) {
             throw new BadRequestAlertException("A new book cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -82,7 +82,7 @@ public class BookResource {
      */
     @PutMapping("/books")
     public ResponseEntity<BookDTO> updateBook(@Valid @RequestBody BookDTO bookDTO) throws URISyntaxException {
-        log.debug("REST request to update Book : {}", bookDTO);
+        log.info("REST request to update Book : {}", bookDTO);
         if (bookDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
@@ -100,7 +100,7 @@ public class BookResource {
      */
     @GetMapping("/books")
     public ResponseEntity<List<BookDTO>> getAllBooks(Pageable pageable) {
-        log.debug("REST request to get a page of Books");
+        log.info("REST request to get a page of Books");
         Page<BookDTO> page = bookService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -114,7 +114,7 @@ public class BookResource {
      */
     @GetMapping("/books/{id}")
     public ResponseEntity<BookDTO> getBook(@PathVariable Long id) {
-        log.debug("REST request to get Book : {}", id);
+        log.info("REST request to get Book : {}", id);
         Optional<BookDTO> bookDTO = bookService.findOne(id);
         return ResponseUtil.wrapOrNotFound(bookDTO);
     }
@@ -127,7 +127,7 @@ public class BookResource {
      */
     @DeleteMapping("/books/{id}")
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
-        log.debug("REST request to delete Book : {}", id);
+        log.info("REST request to delete Book : {}", id);
         bookService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
